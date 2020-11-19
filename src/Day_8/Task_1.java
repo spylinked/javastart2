@@ -5,6 +5,7 @@ public class Task_1 {
         long start, end;
         String concated1 = "";
         StringBuilder concated2 = new StringBuilder();
+        StringBuilder concated3 = new StringBuilder();
 /*-----------------------------------------*/
         start = System.nanoTime();
         for (int i = 0; i < 20000; i++) {
@@ -28,6 +29,14 @@ public class Task_1 {
         }
         end = System.nanoTime();
         System.out.println();
+        System.out.println(end-start);
+/*-----------------------------------------*/
+        start = System.nanoTime();
+        for (int i = 0; i < 20000; i++) {
+            concated3.append(i).append(" ");
+        }
+        end = System.nanoTime();
+        System.out.println(concated3);
         System.out.println(end-start);
 /*-----------------------------------------*/
 
