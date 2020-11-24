@@ -11,7 +11,7 @@ public class Courier implements Worker{
     }
 
     public String getType() {
-        return TYPE;
+        return this.TYPE;
     }
 
     public int getSalary() {
@@ -24,17 +24,17 @@ public class Courier implements Worker{
 
     public void assignToWarehouse(Warehouse warehouse){
         this.warehouse = warehouse;
-        this.warehouse.assignWorker(this);
     }
 
     @Override
     public void doWork() {
         this.salary = this.salary+100;
         warehouse.setBalance(warehouse.getBalance()+1000);
+        //System.out.println(this.getName() + " поработал.");
     }
 
     @Override
     public void bonus() {
-
+        this.salary = this.salary*3;
     }
 }

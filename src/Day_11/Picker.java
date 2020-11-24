@@ -11,7 +11,7 @@ public class Picker implements Worker{
     }
 
     public String getType() {
-        return TYPE;
+        return this.TYPE;
     }
 
     public int getSalary() {
@@ -24,17 +24,17 @@ public class Picker implements Worker{
 
     public void assignToWarehouse(Warehouse warehouse){
         this.warehouse = warehouse;
-        this.warehouse.assignWorker(this);
     }
 
     @Override
     public void doWork() {
         this.salary = this.salary+80;
         warehouse.setCountOrder(warehouse.getCountOrder()+1);
+        //System.out.println(this.getName() + " поработал.");
     }
 
     @Override
     public void bonus() {
-
+        this.salary = this.salary*3;
     }
 }
