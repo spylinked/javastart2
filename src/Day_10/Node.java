@@ -8,9 +8,6 @@ public class Node {
     private Node rightNode;
     private Node parNode;
     private static Node rootNode;
-    private static String leftSortedVal = "";
-    private static String rightSortedVal = "";
-    private static String sortedVal = "";
 
     public Node(int val) {
         this.val = val;
@@ -119,26 +116,22 @@ public class Node {
         System.out.println(getNodeVals2(rootNode));
     }
 
-    public static String getLeftPart(){
-        return leftSortedVal;
-    }
-
     public static String getNodeVals2(Node node) {
-        String huy = "";
-        String huy2 = "";
-        String huy3 = "";
+        String string = "";
+        String leftString = "";
+        String rightString = "";
         if (node.getLeftNode() != null || node.getRightNode() != null) {
             if (node.getLeftNode() != null) {
-                huy2 =getNodeVals2(node.getLeftNode()) + " ";
+                leftString =getNodeVals2(node.getLeftNode()) + " ";
             }
             if (node.getRightNode() != null) {
-                huy3 = " " + getNodeVals2(node.getRightNode()) ;
+                rightString = " " + getNodeVals2(node.getRightNode()) ;
             }
-            huy = huy2 + node.getVal() + huy3;
+            string = leftString + node.getVal() + rightString;
         } else {
-            huy = huy + node.getVal();
+            string = string + node.getVal();
         }
-        return huy;
+        return string;
     }
     /*
     public static String getNodeVals(Node node){
