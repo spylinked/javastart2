@@ -2,7 +2,7 @@ package MyUtils;
 
 import java.util.Random;
 
-public final class generateName {
+public final class generate {
 
     public static String[] generateName() {
         String[] fio = new String[3];
