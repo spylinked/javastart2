@@ -115,8 +115,8 @@ public class Node {
     public static void sortTree() {
         System.out.println(getNodeVals2(rootNode));
     }
-
-    public static String getNodeVals2(Node node) {
+/*
+    public static String getNodeValsOld(Node node) {
         String string = "";
         String leftString = "";
         String rightString = "";
@@ -133,6 +133,17 @@ public class Node {
         }
         return string;
     }
+
+ */
+
+    public static String getNodeVals2(Node node) {
+        String string = "";
+        if (node != null) {
+            string = getNodeVals2(node.getLeftNode()) + node.getVal() + " " + getNodeVals2(node.getRightNode());
+        }
+        return string;
+    }
+
     /*
     public static String getNodeVals(Node node){
             if (node.getLeftNode() != null) {
