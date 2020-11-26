@@ -68,4 +68,14 @@ public final class generate {
 
         return combination;
     }
+
+    public static String generateLogin() {
+        Random rnd = new Random();
+
+        String[] logins = {"Yanickya", "Azannon", "Yamieko", "Imae", "Yrillavi", "Janual", "Delemo",
+                "Ghann", "Onellora", "Kentu", "Hitfiel", "Dele", "Lade", "Parki", "Xesara", "Ushamun", "Xter", "Xarl", "Quill", "Dieg"};
+
+
+        return logins[rnd.nextInt(logins.length)];
+    }
 }
