@@ -1,4 +1,4 @@
-package Day_14;
+package Day_16;
 
 import MyExceptions.BadIODataException;
 
@@ -10,11 +10,12 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Task2 {
+public class Task1 {
     public static void main(String[] args) {
-        File file = new File("persons");
+
+        File file = new File("digits");
         try {
-            System.out.println(parseFileToStringList(file));
+            printResult(file);
         }
         catch (FileNotFoundException e) {
             System.out.println("Файл не найден");
@@ -22,35 +23,34 @@ public class Task2 {
         catch (BadIODataException e) {
             System.out.println(e.getLocalizedMessage());
         }
-
         catch (NumberFormatException e) {
             System.out.println(e.getLocalizedMessage());
         }
+
+
     }
-
-    public static List<String> parseFileToStringList(File file) throws FileNotFoundException, BadIODataException {
-        List<String> personsList = new ArrayList<>();
+    public static void printResult(File file) throws FileNotFoundException, BadIODataException {
         Scanner scanner = new Scanner(file);
-        List<Integer> numbers = new ArrayList<>();
+        Pattern p = Pattern.compile("^(\\d+ )+(\\d+)$"); // пойдёт, среднее в одном числе всё равно не тсмысла искать
+        int summ = 0;
 
-        Pattern p = Pattern.compile("\\S+ \\d+");
-
-        while(scanner.hasNextLine()) {
+        if(scanner.hasNextLine()) {
             String line = scanner.nextLine();
             Matcher m = p.matcher(line);
             if (!m.find()) {
                 scanner.close();
                 throw new BadIODataException("Не верный формат строки " + line);
             }
-            String[] personString = line.split(" ");
-            if (Integer.parseInt(personString[1]) < 0 ) {
-                scanner.close();
-                throw new BadIODataException("Обнаружен возраст < 0 у " + personString[0]);
+            String[] numberString = line.split(" ");
+            for (String stringNumber : numberString) {
+                summ = summ+Integer.parseInt(stringNumber);
             }
-            personsList.add(line);
+            double doub = (double)summ/numberString.length;
+
+            scanner.close();
+            System.out.println("Числа в файле: " + line);
+            System.out.printf("Ответ: " + doub + " --> %.3f\n",  doub);
         }
-        scanner.close();
-        return personsList;
 
     }
 }

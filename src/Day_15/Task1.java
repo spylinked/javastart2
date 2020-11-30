@@ -1,20 +1,22 @@
-package Day_14;
+package Day_15;
 
 import MyExceptions.BadIODataException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Task2 {
+public class Task1 {
     public static void main(String[] args) {
-        File file = new File("persons");
+        File inFile = new File("src/shoes.csv");
+
         try {
-            System.out.println(parseFileToStringList(file));
+            getMissingShoes(inFile);
         }
         catch (FileNotFoundException e) {
             System.out.println("Файл не найден");
@@ -26,14 +28,16 @@ public class Task2 {
         catch (NumberFormatException e) {
             System.out.println(e.getLocalizedMessage());
         }
+
     }
 
-    public static List<String> parseFileToStringList(File file) throws FileNotFoundException, BadIODataException {
-        List<String> personsList = new ArrayList<>();
+    public static void getMissingShoes(File file) throws FileNotFoundException, BadIODataException {
+        File outFile = new File("outShoes");
+        PrintWriter pw = new PrintWriter(outFile);
         Scanner scanner = new Scanner(file);
         List<Integer> numbers = new ArrayList<>();
 
-        Pattern p = Pattern.compile("\\S+ \\d+");
+        Pattern p = Pattern.compile("^[^;]+;\\d+;\\d+$");
 
         while(scanner.hasNextLine()) {
             String line = scanner.nextLine();
@@ -42,15 +46,13 @@ public class Task2 {
                 scanner.close();
                 throw new BadIODataException("Не верный формат строки " + line);
             }
-            String[] personString = line.split(" ");
-            if (Integer.parseInt(personString[1]) < 0 ) {
-                scanner.close();
-                throw new BadIODataException("Обнаружен возраст < 0 у " + personString[0]);
+            String[] shoesLine = line.split(";");
+            if (Integer.parseInt(shoesLine[2]) == 0 ) {
+                pw.println(shoesLine[0] + ", " + shoesLine[1] + ", " + shoesLine[2]);
             }
-            personsList.add(line);
         }
+        pw.close();
         scanner.close();
-        return personsList;
 
     }
 }

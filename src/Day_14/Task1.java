@@ -36,10 +36,12 @@ public class Task1 {
             try {
                 numbers.add(Integer.parseInt(stringNumber));
             } catch(NumberFormatException e) {
+                scanner.close();
                 throw new NumberFormatException("Тут не число - " + stringNumber);
             }
         }
         if (numbers.size() != 10) {
+            scanner.close();
             throw new BadIODataException("Количество чисел = " + numbers.size() + " а должно быть 10");
         }
 
@@ -48,6 +50,7 @@ public class Task1 {
         for (Integer number : numbers) {
             summ = summ+number;
         }
+        scanner.close();
         System.out.println(summ);
     }
 }
