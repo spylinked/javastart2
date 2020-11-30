@@ -39,14 +39,17 @@ public class Task3 {
             String line = scanner.nextLine();
             Matcher m = p.matcher(line);
             if (!m.find()) {
+                scanner.close();
                 throw new BadIODataException("Не верный формат строки " + line);
             }
             String[] personString = line.split(" ");
             if (Integer.parseInt(personString[1]) < 0 ) {
+                scanner.close();
                 throw new BadIODataException("Обнаружен возраст < 0 у " + personString[0]);
             }
             new People(personString[0], Integer.parseInt(personString[1]));
         }
+        scanner.close();
         return People.getAllPeoples();
     }
 }
