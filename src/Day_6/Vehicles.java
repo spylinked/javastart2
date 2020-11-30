@@ -95,11 +95,11 @@ class Car {
 }
 
 class Airplane{
-    String producer;
-    int year;
-    int length;
-    int weight;
-    int fuel;
+    private String producer;
+    private int year;
+    private int length;
+    private int weight;
+    private int fuel;
 
     public  Airplane(String producer, int year, int length, int weight) {
         this.producer = producer;
