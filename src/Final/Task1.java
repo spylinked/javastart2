@@ -76,6 +76,10 @@ public class Task1 {
 
     }
     public static void startGameBot(){
-
+        List<Player> playersList = new ArrayList<>();
+        playersList.add(new Bot());
+        playersList.get(0).getField().printMyField();
+        playersList.get(0).placeShips();
+        playersList.get(0).getField().printMyField();
     }
 }

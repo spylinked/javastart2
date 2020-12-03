@@ -18,6 +18,7 @@ public class Ship {
         this.type = type;
         this.field = field;
         this.placed = false;
+        this.shipCells = new Cell[type.getSize()];
     }
 
     public boolean isPlaced() {
@@ -108,11 +109,7 @@ public class Ship {
                     System.out.println("Клетки корабля не соединены или несколько одинаковых клеток.");
                     continue;
                 }
-                shipCells = new Cell[type.getSize()];
-                for (int i = 0; i < cells.length; i++) {
-                    field.getCellGrid()[shipPos[i][0]][shipPos[i][1]].setShip(this);
-                    shipCells[i] = field.getCellGrid()[shipPos[i][0]][shipPos[i][1]];
-                }
+                setShipCells(shipPos);
                 break;
 
             } else {
@@ -120,8 +117,12 @@ public class Ship {
                 continue;
             }
         }
-
-
-
     }
+    public void setShipCells(int[][] shipPos){
+        for (int i = 0; i < shipPos.length; i++) {
+            field.getCellGrid()[shipPos[i][0]][shipPos[i][1]].setShip(this);
+            shipCells[i] = field.getCellGrid()[shipPos[i][0]][shipPos[i][1]];
+        }
+    }
+
 }

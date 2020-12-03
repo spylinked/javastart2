@@ -89,7 +89,7 @@ public class BattleField{
                     }
                 } else {
                     if(cellGrid[i][j].isContainShip()) {
-                        System.out.print("🟦 ");
+                        System.out.print("\uD83D\uDD32 ");
                     } else {
                         System.out.print("⬜ ");
                     }
