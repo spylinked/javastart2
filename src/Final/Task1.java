@@ -7,8 +7,19 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Task1 {
-    public static void main(String[] args) throws IOException {
-        startGame();
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        while(true) {
+            System.out.println("1 или 2 игрока?");
+            if (scan.nextInt() == 1) {
+                startGameBot();
+                break;
+            }
+            if (scan.nextInt() == 2) {
+                startGame();
+                break;
+            }
+        }
         /*
         BattleField field = new BattleField();
         field.printField();
@@ -33,9 +44,9 @@ public class Task1 {
          */
     }
 
-    public static void startGame() throws IOException {
-        List<Player> playersList = new ArrayList<>();
+    public static void startGame() {
         Scanner scan = new Scanner(System.in);
+        List<Player> playersList = new ArrayList<>();
         System.out.println("Игрок 1 введите ваше имя: ");
         playersList.add(new Player(scan.nextLine()));
         playersList.get(0).placeShips();
@@ -62,6 +73,9 @@ public class Task1 {
                 playersList.get(0).getField().printMyField();
             }
         }
+
+    }
+    public static void startGameBot(){
 
     }
 }

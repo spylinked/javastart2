@@ -19,6 +19,50 @@ public class Cell {
 
     }
 
+    public Boolean canPlace(int size, int direction) { //direction 0-UP, 1-RIGHT, 2-DOWN, 3-LEFT
+        if(checkPlace()){
+            if(size>1){
+                for (Cell neiCell: neighbours) {
+                    switch(direction) {
+                        case 0:
+                            if(neiCell.getPosX() == posX && neiCell.getPosY() == posY+1) {
+                                neiCell.canPlace(size-1, direction);
+                            }
+                            break;
+                        case 1:
+                            if(neiCell.getPosX() == posX+1 && neiCell.getPosY() == posY) {
+                                neiCell.canPlace(size-1, direction);
+                            }
+                            break;
+                        case 2:
+                            if(neiCell.getPosX() == posX && neiCell.getPosY() == posY-1) {
+                                neiCell.canPlace(size-1, direction);
+                            }
+                            break;
+                        case 3:
+                            if(neiCell.getPosX() == posX-1 && neiCell.getPosY() == posY) {
+                                neiCell.canPlace(size-1, direction);
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int getPosX() {
+        return posX;
+    }
+
+    public int getPosY() {
+        return posY;
+    }
+
     public boolean isShot() {
         return shot;
     }
