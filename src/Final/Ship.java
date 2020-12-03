@@ -2,6 +2,7 @@ package Final;
 
 import MyExceptions.BadIODataException;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Scanner;
@@ -11,6 +12,7 @@ public class Ship {
     private final ShipType type;
     private boolean placed;
     private final BattleField field;
+    private Cell[] shipCells;
 
     public Ship(ShipType type, BattleField field) {
         this.type = type;
@@ -27,6 +29,23 @@ public class Ship {
 
     public void setPlaced(boolean placed) {
         this.placed = placed;
+    }
+
+    public boolean isDestroyed() { //TODO переделать на расчет после выстрелов
+        for (Cell cell: shipCells) {
+            if(!cell.isShot()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void fillAreaAround() {
+        for (int i = 0; i < shipCells.length; i++) {
+            for (int j = 0; j < shipCells[i].getNeighbours().size(); j++) {
+                shipCells[i].getNeighbours().get(j).setShot(true);
+            }
+        }
     }
 
     public void placeShip() {
@@ -89,53 +108,17 @@ public class Ship {
                     System.out.println("Клетки корабля не соединены или несколько одинаковых клеток.");
                     continue;
                 }
-
-
-
-                /*
+                shipCells = new Cell[type.getSize()];
                 for (int i = 0; i < cells.length; i++) {
-                    for (int j = i+1; j < cells.length; j++) {
-                        if(cells[i].equals(cells[j])) {
-                            System.out.println("Найдены 2 одинаковые клетки " + cells[i] + " " + cells[j]);
-                            isError = true;
-                            break;
-                        }
-                    }
+                    field.getCellGrid()[shipPos[i][0]][shipPos[i][1]].setShip(this);
+                    shipCells[i] = field.getCellGrid()[shipPos[i][0]][shipPos[i][1]];
                 }
-                for (int i = 0; i < cells.length; i++) {
-                    int posX = Integer.parseInt(cells[i].replaceAll("[\\D]", ""))-1;
-                    int posY = utils.transCharToInt(cells[i].charAt(0));
-                    if(!field.getCellGrid()[posX][posY].checkPlace()) {
-                        System.out.println("Невозможно расположить на " + cells[i] + " рядом другой корабль");
-                        isError = true;
-                        break;
-                    }
-                    if(i>0){
-                        int prevPosX = Integer.parseInt(cells[i-1].replaceAll("[\\D]", ""))-1;
-                        int PrevPosY = utils.transCharToInt(cells[i-1].charAt(0));
-                        //if(prevPosX != posX+1 || prevPosX != posX-1 || PrevPosY != posY+1 || PrevPosY != posY-1) {
-                        /*
-                        if(prevPosX == posX) {
-                            System.out.println("Разрыв в координатах");
-                            isError = true;
-                            break;
-                        }
+                break;
 
-                    }
-                }
-                */
             } else {
                 System.out.println("Не правильный формат строки: " + line);
                 continue;
             }
-            for (int i = 0; i < cells.length; i++) {
-                int posX = Integer.parseInt(cells[i].replaceAll("[\\D]", ""))-1;
-                int posY = utils.transCharToInt(cells[i].charAt(0));
-                field.getCellGrid()[posX][posY].setContainShip(true);
-
-            }
-            break;
-
         }
 
 

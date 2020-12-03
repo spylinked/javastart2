@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cell {
-    private boolean revealed = false;
+    private boolean shot = false;
     private boolean containShip = false;
     private final BattleField field;
     private final int posX;
     private final int posY;
-    private final List<Cell> neighbours = new ArrayList();
+    private Ship ship;
+    private final List<Cell> neighbours = new ArrayList<Cell>();
 
     public Cell(BattleField field, int posX, int posY) {
         this.field = field;
@@ -18,23 +19,30 @@ public class Cell {
 
     }
 
-    public boolean isRevealed() {
-        return revealed;
+    public boolean isShot() {
+        return shot;
     }
 
-    public void setRevealed(boolean revealed) {
-        this.revealed = revealed;
+    public void setShot(boolean shot) {
+        this.shot = shot;
+    }
+
+    public Ship getShip() {
+        return this.ship;
+    }
+
+    public void setShip(Ship ship) {
+        this.ship = ship;
     }
 
     public boolean isContainShip() {
-        return containShip;
+        if(ship!=null){
+            return true;
+        }
+        return false;
     }
 
-    public void setContainShip(boolean containShip) {
-        this.containShip = containShip;
-    }
-
-    public List getNeighbours() {
+    public List<Cell> getNeighbours() {
         return neighbours;
     }
 

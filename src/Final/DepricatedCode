@@ -1,0 +1,33 @@
+
+                /*
+                for (int i = 0; i < cells.length; i++) {
+                    for (int j = i+1; j < cells.length; j++) {
+                        if(cells[i].equals(cells[j])) {
+                            System.out.println("Найдены 2 одинаковые клетки " + cells[i] + " " + cells[j]);
+                            isError = true;
+                            break;
+                        }
+                    }
+                }
+                for (int i = 0; i < cells.length; i++) {
+                    int posX = Integer.parseInt(cells[i].replaceAll("[\\D]", ""))-1;
+                    int posY = utils.transCharToInt(cells[i].charAt(0));
+                    if(!field.getCellGrid()[posX][posY].checkPlace()) {
+                        System.out.println("Невозможно расположить на " + cells[i] + " рядом другой корабль");
+                        isError = true;
+                        break;
+                    }
+                    if(i>0){
+                        int prevPosX = Integer.parseInt(cells[i-1].replaceAll("[\\D]", ""))-1;
+                        int PrevPosY = utils.transCharToInt(cells[i-1].charAt(0));
+                        //if(prevPosX != posX+1 || prevPosX != posX-1 || PrevPosY != posY+1 || PrevPosY != posY-1) {
+                        /*
+                        if(prevPosX == posX) {
+                            System.out.println("Разрыв в координатах");
+                            isError = true;
+                            break;
+                        }
+
+                    }
+                }
+                */
