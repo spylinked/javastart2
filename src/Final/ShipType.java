@@ -3,10 +3,10 @@ package Final;
 import java.util.regex.Pattern;
 
 public enum ShipType {
-    BATTLESHIP(4,1,"^([A-Ia-i]([1-9]|10));([A-Ia-i]([1-9]|10));([A-Ia-i]([1-9]|10));([A-Ia-i]([1-9]|10))$"),
-    CRUISER(3,2, "^([A-Ia-i]([1-9]|10));([A-Ia-i]([1-9]|10));([A-Ia-i]([1-9]|10))$"),
-    DESTROYER(2,3, "^([A-Ia-i]([1-9]|10));([A-Ia-i]([1-9]|10))$"),
-    BOAT(1,4, "^([A-Ia-i]([1-9]|10))$");
+    BATTLESHIP(4,1,"^([A-J]([1-9]|10));([A-J]([1-9]|10));([A-J]([1-9]|10));([A-J]([1-9]|10))$"),
+    CRUISER(3,2, "^([A-J]([1-9]|10));([A-J]([1-9]|10));([A-J]([1-9]|10))$"),
+    DESTROYER(2,3, "^([A-J]([1-9]|10));([A-J]([1-9]|10))$"),
+    BOAT(1,4, "^([A-J]([1-9]|10))$");
 
     private final int size;
     private final int needCount;

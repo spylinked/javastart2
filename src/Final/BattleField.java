@@ -43,18 +43,20 @@ public class BattleField {
     }
 
     public void printField(){
-        System.out.println("    A B C D E F G H I J ");
+        System.out.println("   A   B  C  D   E  F  G   H  I   J");
         for (int i = 0; i < cellGrid.length; i++) {
             for (int j = 0; j < cellGrid[i].length; j++) {
                 if(j==0)
                     System.out.printf("%2d ",i+1);
                 if(cellGrid[i][j].isContainShip()) {
-                    System.out.print("|■");
+                    System.out.print("■ ");
+                    //System.out.print("|O");
                 } else {
-                    System.out.print("|_");
+                    System.out.print("⬜ ");
+                    //System.out.print("|_");
                 }
             }
-            System.out.print("|");
+            //System.out.print("|");
             System.out.println();
         }
     }
