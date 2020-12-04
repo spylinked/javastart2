@@ -19,7 +19,10 @@ public class Task1 {
                     startGame();
                     break;
                 default:
+                    botsBattle();
+                    break;
             }
+            break;
         }
     }
 
@@ -65,6 +68,28 @@ public class Task1 {
         playersList.get(1).placeShips();
         Collections.shuffle(playersList);
         System.out.println("Первым ходит " + playersList.get(0).getName());
+        int status = 0;
+        while (status != 2) {
+            status = 1;
+            while(status == 1) {
+                status = playersList.get(0).shoot(playersList.get(1));
+            }
+            if(status != 2) {
+                Collections.swap(playersList, 0, 1);
+                System.out.println("Ход игрока " + playersList.get(0).getName());
+                System.out.println("Ваше поле:");
+                playersList.get(0).getField().printMyField();
+            }
+        }
+    }
+    public static void botsBattle(){
+        System.out.println("BOTS BATTLE!");
+        List<Player> playersList = new ArrayList<>();
+        playersList.add(new Bot());
+        playersList.get(0).placeShips();
+        playersList.add(new Bot());
+        playersList.get(1).placeShips();
+        Collections.shuffle(playersList);
         int status = 0;
         while (status != 2) {
             status = 1;
