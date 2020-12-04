@@ -100,6 +100,28 @@ public class Cell {
         return true;
     }
 
+    public void fillDiagonal(){
+        for (Cell neiCell: neighbours) {
+            if ((neiCell.getPosX() == posX-1 && neiCell.getPosY() == posY-1) ||
+                    (neiCell.getPosX() == posX+1 && neiCell.getPosY() == posY-1) ||
+                    (neiCell.getPosX() == posX-1 && neiCell.getPosY() == posY+1) ||
+                    (neiCell.getPosX() == posX+1 && neiCell.getPosY() == posY+1)){
+                neiCell.setShot(true);
+            }
+        }
+    }
+
+    public boolean isPossibleShip(){
+        if(!isShot()){
+            for (Cell neiCell: neighbours) {
+                if(neiCell.isShot() && neiCell.isContainShip()){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public void fillNeighbours(){
         if(posX>0) {
             this.field.getCellGrid()[posX - 1][posY].getNeighbours().add(this);

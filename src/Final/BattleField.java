@@ -57,6 +57,7 @@ public class BattleField{
                     return 2;
                 }
             } else {
+                this.getCellGrid()[X][Y].fillDiagonal();
                 System.out.println("Ранен!");
             }
             return 1;
@@ -85,7 +86,8 @@ public class BattleField{
                         System.out.print("❌ ");
                     }
                     else {
-                        System.out.print("▪️ ");
+                        //System.out.print("▪️ ");
+                        System.out.print("▪ ");
                     }
                 } else {
                     if(cellGrid[i][j].isContainShip()) {
@@ -110,7 +112,8 @@ public class BattleField{
                         System.out.print("❌ ");
                     }
                     else {
-                        System.out.print("▪️ ");
+                        //System.out.print("▪️ ");
+                        System.out.print("▪ ");
                     }
                 } else {
                     System.out.print("⬜ ");
